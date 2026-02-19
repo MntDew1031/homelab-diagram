@@ -1,0 +1,305 @@
+{
+  "id": "7c1ff0c8-7f46-40ec-8f5a-5a51bb4c8c48",
+  "name": "K3s Homelab",
+  "description": "K3s cluster with AI stack and monitoring",
+  "created_at": "2026-02-19T19:12:01.136205",
+  "updated_at": "2026-02-19T19:12:01.136214",
+  "nodes": [
+    {
+      "id": "hw-node1",
+      "type": "hardware",
+      "subtype": "server",
+      "position": {
+        "x": 100.0,
+        "y": 80.0
+      },
+      "data": {
+        "label": "k3s-node-1",
+        "description": "K3s worker node",
+        "custom_properties": {
+          "hostname": "k3s-node-1",
+          "role": "k3s-worker",
+          "os": "Debian 12"
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "hw-node2",
+      "type": "hardware",
+      "subtype": "server",
+      "position": {
+        "x": 350.0,
+        "y": 80.0
+      },
+      "data": {
+        "label": "k3s-node-2",
+        "description": "K3s worker node",
+        "custom_properties": {
+          "hostname": "k3s-node-2",
+          "role": "k3s-worker",
+          "os": "Debian 12"
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "hw-node3",
+      "type": "hardware",
+      "subtype": "server",
+      "position": {
+        "x": 600.0,
+        "y": 80.0
+      },
+      "data": {
+        "label": "k3s-node-3",
+        "description": "K3s worker node (GPU)",
+        "custom_properties": {
+          "hostname": "k3s-node-3",
+          "role": "k3s-worker",
+          "gpu": "Intel iGPU",
+          "os": "Debian 12"
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "hw-truenas",
+      "type": "hardware",
+      "subtype": "nas",
+      "position": {
+        "x": 850.0,
+        "y": 80.0
+      },
+      "data": {
+        "label": "TrueNAS",
+        "description": "TrueNAS storage server",
+        "custom_properties": {
+          "hostname": "truenas",
+          "role": "NAS / Apps"
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "net-lan",
+      "type": "network",
+      "subtype": "subnet",
+      "position": {
+        "x": 350.0,
+        "y": 0.0
+      },
+      "data": {
+        "label": "LAN",
+        "description": "Home network",
+        "custom_properties": {
+          "subnet": "10.0.0.0/24"
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "k8s-ns-ai",
+      "type": "kubernetes",
+      "subtype": "namespace",
+      "position": {
+        "x": 50.0,
+        "y": 300.0
+      },
+      "data": {
+        "label": "ai-stack",
+        "description": "AI workloads namespace",
+        "custom_properties": {
+          "namespace": "ai-stack"
+        }
+      },
+      "width": 500.0,
+      "height": 200.0,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "k8s-ollama",
+      "type": "kubernetes",
+      "subtype": "statefulset",
+      "position": {
+        "x": 80.0,
+        "y": 360.0
+      },
+      "data": {
+        "label": "Ollama",
+        "description": "LLM inference server",
+        "custom_properties": {
+          "kind": "StatefulSet",
+          "replicas": 3,
+          "image": "ollama/ollama:latest",
+          "ports": [
+            "11434"
+          ]
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": "k8s-ns-ai",
+      "style": null
+    },
+    {
+      "id": "k8s-openwebui",
+      "type": "kubernetes",
+      "subtype": "helmrelease",
+      "position": {
+        "x": 330.0,
+        "y": 360.0
+      },
+      "data": {
+        "label": "Open WebUI",
+        "description": "Web interface for Ollama",
+        "custom_properties": {
+          "kind": "HelmRelease",
+          "helm_chart": "open-webui",
+          "ports": [
+            "30080"
+          ]
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": "k8s-ns-ai",
+      "style": null
+    },
+    {
+      "id": "k8s-ns-monitoring",
+      "type": "kubernetes",
+      "subtype": "namespace",
+      "position": {
+        "x": 600.0,
+        "y": 300.0
+      },
+      "data": {
+        "label": "monitoring",
+        "description": "Monitoring namespace",
+        "custom_properties": {
+          "namespace": "monitoring"
+        }
+      },
+      "width": 350.0,
+      "height": 200.0,
+      "parent_id": null,
+      "style": null
+    },
+    {
+      "id": "k8s-prometheus",
+      "type": "kubernetes",
+      "subtype": "helmrelease",
+      "position": {
+        "x": 630.0,
+        "y": 360.0
+      },
+      "data": {
+        "label": "kube-prometheus-stack",
+        "description": "Prometheus + Grafana",
+        "custom_properties": {
+          "kind": "HelmRelease",
+          "helm_chart": "kube-prometheus-stack",
+          "grafana_port": 30090
+        }
+      },
+      "width": null,
+      "height": null,
+      "parent_id": "k8s-ns-monitoring",
+      "style": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-webui-ollama",
+      "source": "k8s-openwebui",
+      "target": "k8s-ollama",
+      "source_handle": null,
+      "target_handle": null,
+      "label": "HTTP :11434",
+      "edge_type": "default",
+      "style": null,
+      "animated": false
+    },
+    {
+      "id": "e-ollama-gpu",
+      "source": "k8s-ollama",
+      "target": "hw-node3",
+      "source_handle": null,
+      "target_handle": null,
+      "label": "GPU scheduling",
+      "edge_type": "default",
+      "style": null,
+      "animated": true
+    },
+    {
+      "id": "e-lan-node1",
+      "source": "net-lan",
+      "target": "hw-node1",
+      "source_handle": null,
+      "target_handle": null,
+      "label": null,
+      "edge_type": "network",
+      "style": null,
+      "animated": false
+    },
+    {
+      "id": "e-lan-node2",
+      "source": "net-lan",
+      "target": "hw-node2",
+      "source_handle": null,
+      "target_handle": null,
+      "label": null,
+      "edge_type": "network",
+      "style": null,
+      "animated": false
+    },
+    {
+      "id": "e-lan-node3",
+      "source": "net-lan",
+      "target": "hw-node3",
+      "source_handle": null,
+      "target_handle": null,
+      "label": null,
+      "edge_type": "network",
+      "style": null,
+      "animated": false
+    },
+    {
+      "id": "e-lan-truenas",
+      "source": "net-lan",
+      "target": "hw-truenas",
+      "source_handle": null,
+      "target_handle": null,
+      "label": null,
+      "edge_type": "network",
+      "style": null,
+      "animated": false
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 0.85
+  },
+  "tags": [
+    "k3s",
+    "homelab"
+  ]
+}

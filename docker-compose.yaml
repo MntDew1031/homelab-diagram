@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  homelab-diagram:
+    image: homelab-diagram:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: homelab-diagram
+    ports:
+      - "6767:6767"
+    volumes:
+      - diagram-data:/data/diagrams
+    environment:
+      - DATA_DIR=/data/diagrams
+    restart: unless-stopped
+
+volumes:
+  diagram-data:
+    driver: local

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "7c1ff0c8-7f46-40ec-8f5a-5a51bb4c8c48",
+    "name": "K3s Homelab",
+    "description": "K3s cluster with AI stack and monitoring",
+    "created_at": "2026-02-19T19:12:01.136205",
+    "updated_at": "2026-02-19T19:12:01.136214",
+    "tags": [
+      "k3s",
+      "homelab"
+    ],
+    "node_count": 10,
+    "edge_count": 6
+  }
+]
