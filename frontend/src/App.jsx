@@ -51,6 +51,7 @@ function AppInner() {
         label: n.data.label,
         description: n.data.description,
         custom_properties: n.data.custom_properties || {},
+        color: n.data.color || null,
         _nodeType: n.type,
         _nodeSubtype: n.subtype,
         _icon: n.subtype,
@@ -87,6 +88,7 @@ function AppInner() {
         label: n.data.label,
         description: n.data.description || '',
         custom_properties: n.data.custom_properties || {},
+        ...(n.data.color ? { color: n.data.color } : {}),
       },
       ...(n.width ? { width: n.width } : {}),
       ...(n.height ? { height: n.height } : {}),
@@ -207,6 +209,7 @@ function AppInner() {
               label: updatedData.label,
               description: updatedData.description,
               custom_properties: updatedData.custom_properties,
+              color: updatedData.color,
             },
           };
         })

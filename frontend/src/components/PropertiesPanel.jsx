@@ -10,6 +10,7 @@ export default function PropertiesPanel({ selectedNode, onNodeUpdate, onNodeDele
         label: selectedNode.data.label || '',
         description: selectedNode.data.description || '',
         custom_properties: { ...(selectedNode.data.custom_properties || {}) },
+        color: selectedNode.data.color || null,
       });
     } else {
       setLocalData(null);
@@ -61,6 +62,25 @@ export default function PropertiesPanel({ selectedNode, onNodeUpdate, onNodeDele
     [selectedNode?.id, onNodeUpdate]
   );
 
+  const handleColorChange = useCallback(
+    (newColor) => {
+      setLocalData((prev) => {
+        const updated = { ...prev, color: newColor };
+        onNodeUpdate(selectedNode.id, updated);
+        return updated;
+      });
+    },
+    [selectedNode?.id, onNodeUpdate]
+  );
+
+  const handleColorReset = useCallback(() => {
+    setLocalData((prev) => {
+      const updated = { ...prev, color: null };
+      onNodeUpdate(selectedNode.id, updated);
+      return updated;
+    });
+  }, [selectedNode?.id, onNodeUpdate]);
+
   if (!selectedNode || !localData) {
     return (
       <div className="properties-panel">
@@ -80,7 +100,7 @@ export default function PropertiesPanel({ selectedNode, onNodeUpdate, onNodeDele
       <div className="panel-header">
         Properties
         {category && (
-          <span className="panel-badge" style={{ backgroundColor: category.color }}>
+          <span className="panel-badge" style={{ backgroundColor: localData.color || category.color }}>
             {category.subtypes[nodeSubtype]?.label || nodeSubtype}
           </span>
         )}
@@ -103,6 +123,30 @@ export default function PropertiesPanel({ selectedNode, onNodeUpdate, onNodeDele
           onChange={(e) => handleFieldChange('description', e.target.value)}
           rows={2}
         />
+      </div>
+
+      <div className="panel-section">
+        <div className="panel-section-title">Node Color</div>
+        <div className="panel-color-row">
+          <input
+            type="color"
+            className="panel-color-input"
+            value={localData.color || category?.color || '#888888'}
+            onChange={(e) => handleColorChange(e.target.value)}
+          />
+          <span className="panel-color-value">
+            {localData.color || category?.color || '#888888'}
+          </span>
+          {localData.color && (
+            <button
+              className="panel-color-reset"
+              onClick={handleColorReset}
+              title="Reset to default"
+            >
+              Reset
+            </button>
+          )}
+        </div>
       </div>
 
       {fields.length > 0 && (

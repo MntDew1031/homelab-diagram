@@ -1,16 +1,18 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { getIcon } from '../../utils/icons';
+import { NODE_CATEGORIES } from '../../utils/nodeTypes';
 
 function HardwareNode({ data, selected }) {
   const props = data.custom_properties || {};
+  const color = data.color || NODE_CATEGORIES.hardware.color;
   return (
     <div
       className={`diagram-node hardware-node ${selected ? 'selected' : ''}`}
-      style={{ borderColor: '#3b82f6' }}
+      style={{ borderColor: color }}
     >
       <Handle type="target" position={Position.Top} />
-      <div className="node-header" style={{ backgroundColor: '#3b82f6' }}>
+      <div className="node-header" style={{ backgroundColor: color }}>
         <span className="node-icon">{getIcon(data._icon || 'server')}</span>
         <span className="node-label">{data.label}</span>
       </div>

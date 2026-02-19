@@ -141,6 +141,7 @@ export default function DiagramCanvas({
         <Controls />
         <MiniMap
           nodeColor={(node) => {
+            if (node.data?.color) return node.data.color;
             const cat = NODE_CATEGORIES[node.type];
             return cat?.color || '#888';
           }}

@@ -13,6 +13,7 @@ class NodeData(BaseModel):
     label: str
     description: Optional[str] = ""
     custom_properties: dict = Field(default_factory=dict)
+    color: Optional[str] = None
 
 
 class DiagramNode(BaseModel):

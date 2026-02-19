@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(curl:*)",
+      "Bash(kill:*)",
+      "Bash(pkill:*)",
+      "Bash(git -C:*)",
+      "WebFetch(domain:www.gnu.org)",
+      "Bash(git add:*)",
+      "Bash(docker info:*)",
+      "Bash(docker build:*)",
+      "Bash(docker push:*)",
+      "Bash(docker buildx build:*)"
+    ]
+  }
+}

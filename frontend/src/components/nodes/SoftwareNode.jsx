@@ -1,16 +1,18 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 import { getIcon } from '../../utils/icons';
+import { NODE_CATEGORIES } from '../../utils/nodeTypes';
 
 function SoftwareNode({ data, selected }) {
   const props = data.custom_properties || {};
+  const color = data.color || NODE_CATEGORIES.software.color;
   return (
     <div
       className={`diagram-node software-node ${selected ? 'selected' : ''}`}
-      style={{ borderColor: '#f97316' }}
+      style={{ borderColor: color }}
     >
       <Handle type="target" position={Position.Top} />
-      <div className="node-header" style={{ backgroundColor: '#f97316' }}>
+      <div className="node-header" style={{ backgroundColor: color }}>
         <span className="node-icon">{getIcon(data._icon || 'app')}</span>
         <span className="node-label">{data.label}</span>
       </div>

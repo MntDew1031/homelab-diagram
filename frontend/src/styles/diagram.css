@@ -472,6 +472,59 @@ body {
   border-color: #991b1b;
 }
 
+/* Color Picker */
+.panel-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-color-input {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.panel-color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.panel-color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+.panel-color-input::-moz-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+.panel-color-value {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.panel-color-reset {
+  margin-left: auto;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.panel-color-reset:hover {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+
 .panel-delete-section {
   padding: 10px 14px;
 }
