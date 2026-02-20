@@ -1,3 +1,7 @@
+
+<img width="1512" height="797" alt="Screenshot 2026-02-19 at 5 11 30 PM" src="https://github.com/user-attachments/assets/6a3a5015-d0cb-49eb-b766-cbb9b60a697b" />
+
+
 # Homelab Diagram
 
 A self-hosted, open-source web application for visually mapping out your entire homelab infrastructure. Whether you're running a single Raspberry Pi or a full rack of servers with Kubernetes, Homelab Diagram gives you a clean, interactive canvas to document it all.
